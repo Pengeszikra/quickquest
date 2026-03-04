@@ -2,6 +2,9 @@
  * ROGMOR MINIMAL - Competition Quest Edition
  */
 
+// Clean the URL on start
+if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
+
 const state = {
     world: [],
     playerPos: 5,
@@ -51,10 +54,15 @@ function generateWorld(type = 'city') {
         if (i === 12 && state.questStep === 0) return { ...ENTITIES.MERCHANT };
         if (i === 12 && state.questStep === 2) return { ...ENTITIES.LADY };
         if (i === 30 && state.questStep === 1) return { ...ENTITIES.RING };
-
-        if (r < 0.08) return { ...ENTITIES.GUARD };
+        
+        if (r < 0.08) {
+            // Randomize guard face: there are dozens in the sheet, let's pick from a safe range
+            const randomFace = Math.floor(Math.random() * 50); 
+            return { ...ENTITIES.GUARD, spriteIdx: randomFace };
+        }
         if (r < 0.04) return { ...ENTITIES.ORC };
         if (r < 0.05) return { ...ENTITIES.WIZARD };
+
         if (r < 0.05) return { ...ENTITIES.CHEST };
         if (r < 0.08) return { ...ENTITIES.DOOR };
         return null;
@@ -77,7 +85,11 @@ function render() {
             if (i === state.playerPos) html += getSpriteHtml(state.hero.spriteIdx);
             else {
                 const ent = state.world[i];
-                html += ent ? getSpriteHtml(ent.spriteIdx, ent.sheet) : `<span class="floor w-[40px] inline-block text-center text-xs">·</span>`;
+                if (ent?.type === 'door' || ent?.type === 'path') {
+                    html += `<span class="portal-marker">/ \\</span>`;
+                } else {
+                    html += ent ? getSpriteHtml(ent.spriteIdx, ent.sheet) : `<span class="floor w-[40px] inline-block text-center text-xs">·</span>`;
+                }
             }
         }
     } else if (state.mode === 'BATTLE') {
