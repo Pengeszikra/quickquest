@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Gazette | Special Edition</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        body { font-family: 'Times New Roman', serif; }
+        .mono { font-family: 'Courier Prime', monospace; }
+        
+        #game-container { 
+            filter: grayscale(100%) contrast(120%); 
+        }
+        
+        .sprite {
+            display: inline-block; width: 40px; height: 40px;
+            background-size: auto; image-rendering: pixelated;
+            vertical-align: middle; transform: scale(0.9);
+        }
+        .face { background-image: url('assets/faces.png'); }
+        .item { background-image: url('assets/items.png'); }
+        .floor { color: #444; }
+        .option-active { background: #fff; color: #000; padding: 0 4px; border: 1px solid #000; }
+        .option-inactive { color: #888; padding: 0 4px; }
+        .no-select { user-select: none; outline: none; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900">
+    <header class="p-8 bg-white text-center pb-0">
+        <h1 class="text-7xl font-black uppercase tracking-tighter text-black mb-2">The Royal Gazette</h1>
+        <div class="flex justify-center gap-8 text-sm font-bold uppercase tracking-widest text-stone-600 border-t border-stone-300 pt-2 pb-4">
+            <span>Vol. 132 • No. 44</span>
+            <span>Wednesday, March 4, 2026</span>
+            <span>Final Edition</span>
+        </div>
+    </header>
+
+    <!-- The Game Bar - Now placed as the "Black Divider" -->
+    <div id="game-container" class="sticky top-0 z-50 w-full h-14 bg-black text-white flex items-center justify-center no-select shadow-xl border-y border-white/10" tabindex="0">
+        <div id="game-render" class="mono text-xl whitespace-nowrap overflow-hidden flex items-center"></div>
+    </div>
+
+    <main class="max-w-6xl mx-auto p-8 grid grid-cols-1 md:grid-cols-12 gap-12 mt-4">
+        <article class="md:col-span-8 border-r-2 border-stone-200 pr-12">
+            <h2 class="text-6xl font-black mb-6 leading-[0.9] uppercase italic">The Noble's Last Stand</h2>
+            <p class="text-2xl font-serif mb-8 text-stone-800 leading-relaxed first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:mr-3">As the clock strikes the final hour, the fate of the kingdom rests on a single, disgraced noble. Lord Alaric, once the pinnacle of the High Court, has been spotted in the fog-drenched alleys of the Lower District. Is it a quest for redemption, or the final act of a desperate man?</p>
+            
+            <div class="bg-stone-100 p-4 border-2 border-black mb-8 rotate-1 shadow-lg">
+                <div class="aspect-video bg-stone-300 flex items-center justify-center text-9xl grayscale opacity-50">🏰</div>
+                <p class="text-center text-xs mt-2 font-bold uppercase tracking-widest">Sketch: The Iron Keep where the truth remains locked.</p>
+            </div>
+
+            <div class="columns-2 gap-8 text-lg leading-relaxed space-y-4 font-serif">
+                <p>Reliable sources confirm that Alaric seeks the "Shattered Ring," an artifact said to hold the cipher to the King's own journals. The Merchant's Quarter has been locked down, and Royal Guards are under strict orders to "neutralize any unauthorized movements."</p>
+                <p>The underworld is watching. Every door, every path taken leads closer to a revelation that could topple the crown. "It's not just about survival," says an anonymous barkeep. "It's about the Vibe. The Gemini Vibe."</p>
+            </div>
+        </article>
+
+        <aside class="md:col-span-4 space-y-10">
+            <section class="border-4 border-black p-6 bg-yellow-50 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                <h3 class="text-2xl font-black uppercase mb-4 border-b-2 border-black">Field Directives</h3>
+                <div class="mono text-sm space-y-3">
+                    <p class="font-bold">1. LOCATE THE MERCHANT [👤6]</p>
+                    <p class="font-bold">2. RECOVER THE RING [💍]</p>
+                    <p class="font-bold">3. REACH THE LADY [👤9]</p>
+                    <div class="pt-4 border-t border-black/10 text-xs italic">
+                        Movement: [←][→]<br>
+                        Interact/Enter: [↑][Enter]<br>
+                        Combat: Navigate [ATTACK/PARRY]
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </main>
+
+    <footer class="mt-20 p-12 bg-black text-white text-center">
+        <div class="mb-4 flex justify-center items-center gap-4">
+            <span class="text-xs font-bold bg-blue-600 px-3 py-1 rounded-full uppercase tracking-tighter">Built with Google Gemini</span>
+            <p class="text-xs uppercase tracking-[0.5em] font-bold">2026 THE ROYAL GAZETTE</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
