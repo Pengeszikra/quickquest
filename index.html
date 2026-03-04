@@ -9,11 +9,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
         body { font-family: 'Times New Roman', serif; }
         .mono { font-family: 'Courier Prime', monospace; }
-        
-        #game-container { 
-            filter: grayscale(100%) contrast(120%); 
+
+        #game-container {
+            filter: grayscale(100%) contrast(120%);
         }
-        
+
         .sprite {
             display: inline-block; width: 40px; height: 40px;
             background-size: auto; image-rendering: pixelated;
@@ -22,7 +22,7 @@
         .face { background-image: url('assets/faces.png'); }
         .item { background-image: url('assets/items.png'); }
         .floor { color: #444; }
-        .option-active { background: #fff; color: #000; padding: 0 4px; border: 1px solid #000; }
+        .option-active { background: #DDD; color: #000; padding: 0 4px; border: 1px solid #000; }
         .option-inactive { color: #888; padding: 0 4px; }
         .no-select { user-select: none; outline: none; }
     </style>
@@ -46,7 +46,7 @@
         <article class="md:col-span-8 border-r-2 border-stone-200 pr-12">
             <h2 class="text-6xl font-black mb-6 leading-[0.9] uppercase italic">The Noble's Last Stand</h2>
             <p class="text-2xl font-serif mb-8 text-stone-800 leading-relaxed first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:mr-3">As the clock strikes the final hour, the fate of the kingdom rests on a single, disgraced noble. Lord Alaric, once the pinnacle of the High Court, has been spotted in the fog-drenched alleys of the Lower District. Is it a quest for redemption, or the final act of a desperate man?</p>
-            
+
             <div class="bg-stone-100 p-4 border-2 border-black mb-8 rotate-1 shadow-lg">
                 <div class="aspect-video bg-stone-300 flex items-center justify-center text-9xl grayscale opacity-50">🏰</div>
                 <p class="text-center text-xs mt-2 font-bold uppercase tracking-widest">Sketch: The Iron Keep where the truth remains locked.</p>

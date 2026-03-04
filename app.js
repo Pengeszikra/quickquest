@@ -1,4 +1,4 @@
-/** 
+/**
  * ROGMOR MINIMAL - Competition Quest Edition
  */
 
@@ -11,13 +11,13 @@ const state = {
     combatLog: "",
     questStep: 0, // 0: Start, 1: Talked to Merchant, 2: Got Ring, 3: Reach Lady
     hero: {
-        spriteIdx: 4, // 5th character in the top row (0,1,2,3,4)
+        spriteIdx: 5,
         body: 6, reflex: 6, hp: 50, maxHp: 50, exp: 0, level: 1, inventory: []
     }
 };
 
 const SPRITE_SIZE = 40;
-const SPACING = 42; 
+const SPACING = 42;
 const COLS = 12;
 
 const ENTITIES = {
@@ -51,7 +51,7 @@ function generateWorld(type = 'city') {
         if (i === 12 && state.questStep === 0) return { ...ENTITIES.MERCHANT };
         if (i === 12 && state.questStep === 2) return { ...ENTITIES.LADY };
         if (i === 30 && state.questStep === 1) return { ...ENTITIES.RING };
-        
+
         if (r < 0.08) return { ...ENTITIES.GUARD };
         if (r < 0.04) return { ...ENTITIES.ORC };
         if (r < 0.05) return { ...ENTITIES.WIZARD };
@@ -70,7 +70,7 @@ function render() {
         const hpBar = getHpBar(state.hero.hp, state.hero.maxHp);
         const inv = state.hero.inventory.length > 0 ? ` 🎒${state.hero.inventory.length}` : "";
         html += `<span class="text-xs opacity-50 mr-4">LVL ${state.hero.level} ${hpBar}${inv}</span>`;
-        
+
         let start = Math.max(0, state.playerPos - 10);
         let end = Math.min(state.world.length, start + 20);
         for (let i = start; i < end; i++) {
@@ -83,7 +83,7 @@ function render() {
     } else if (state.mode === 'BATTLE') {
         const hBar = getHpBar(state.hero.hp, state.hero.maxHp);
         const eBar = getHpBar(state.target.hp, state.target.maxHp);
-        const options = ["ATTACK", "PARRY", "FLEE"].map((opt, idx) => 
+        const options = ["ATTACK", "PARRY", "FLEE"].map((opt, idx) =>
             `<span class="${idx === state.index ? 'option-active' : 'option-inactive'}">${opt}</span>`
         ).join(" ");
         const actionEffect = state.combatLog ? `<span class="mx-4 text-white font-bold animate-bounce">${state.combatLog}</span>` : " VS ";
